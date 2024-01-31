@@ -11,6 +11,22 @@ router.get('/', (req, res) => {
   })
 });
 
+router.post('/', (req, res) => {
+  req.app.locals.db.collection("users").find().toArray()
+    .then(users => {
+      let user = users.find(user => user._id == req.body.id);
+      if (user) {
+        res.json(user);
+      } else {
+        res.status(404).json({ msg: "User not found" });
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+});
+
 router.post('/add', (req, res) => {
   req.app.locals.db.collection("users").insertOne(req.body)
     .then(result => {
