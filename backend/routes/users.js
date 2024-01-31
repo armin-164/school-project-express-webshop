@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
   })
 });
 
+/* Find and return user */
 router.post('/', (req, res) => {
   req.app.locals.db.collection("users").find().toArray()
     .then(users => {
@@ -27,6 +28,7 @@ router.post('/', (req, res) => {
     });
 });
 
+/* Add a user to database */
 router.post('/add', (req, res) => {
   req.app.locals.db.collection("users").insertOne(req.body)
     .then(result => {
