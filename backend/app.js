@@ -27,6 +27,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017')
 })
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/users', usersRouter);
 
 module.exports = app;
