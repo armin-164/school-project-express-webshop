@@ -22,4 +22,21 @@ router.post('/add', (req, res) => {
     }
 })
 
+/* GET categories from 'categories' collection */
+router.get('/', (req, res) => {
+    req.app.locals.db.collection('categories').find().toArray()
+    .then(data => {
+        if (data.length >= 1) {
+            res.json(data);
+        }
+        else {
+            res.status(404).json( {message: "Categories not found"} )
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({ error: "Internal Server Error" });
+    })
+})
+
 module.exports = router;
