@@ -43,15 +43,20 @@ router.get('/:id', (req, res) => {
 
 /* POST product to 'products' collection */
 router.post('/add', (req, res) => {
-    req.app.locals.db.collection('products').insertOne(req.body)
-    .then(result => {
-        console.log(result)
-        res.status(201).json({ message: "Product added successfully" });
-    })
-    .catch(err => {
-        console.log(err);
-        res.status(500).json({ error: "Internal Server Error" });
-    })
+    if (!req.body.hasOwnProperty('token')) {
+        res.status(401).json({ message: "Token is missing"} );
+    }
+    else {
+        req.app.locals.db.collection('products').insertOne(req.body)
+         .then(result => {
+            console.log(result)
+            res.status(201).json({ message: "Product added successfully" });
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({ error: "Internal Server Error" });
+        })
+    }   
 })
 
 module.exports = router;
