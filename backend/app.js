@@ -23,7 +23,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017')
 .then(client => {
     console.log('Connection to database is succesful');
 
-    const db = client.db('fornamn-efternam');
+    const db = client.db('armin-sadr');
     app.locals.db = db;
 })
 
