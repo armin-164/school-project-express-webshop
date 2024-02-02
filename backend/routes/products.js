@@ -41,6 +41,24 @@ router.get('/:id', (req, res) => {
     })
 })
 
+/* GET products based on category */
+router.get('/category/:id', (req, res) => {
+    req.app.locals.db.collection('products').find().toArray()
+    .then(products => {
+        let newArray = products.filter(product => product.category == req.params.id);
+        if (newArray.length >= 1) {
+            res.json(newArray);
+        }
+        else {
+            res.status(404).json({ message: "Category is empty or nonexistent" });
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({ error: "Internal Server Error" });
+    })
+})
+
 /* POST product to 'products' collection */
 router.post('/add', (req, res) => {
     if (!req.body.hasOwnProperty('token')) {
