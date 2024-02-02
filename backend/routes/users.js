@@ -4,7 +4,21 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', (req, res) => {
   req.app.locals.db.collection("users").find().toArray()
-  .then(users => res.json(users))
+  .then(users => {
+
+    if (users) {
+      let newUsers = users.map(user => {
+        delete user.password;
+        return user;
+      })
+      res.json(newUsers);
+    }
+
+    else {
+      res.status(404).json({ message: 'Users not found'})
+    }
+    
+  })
   .catch(err => {
     console.log(err);
     res.status(500).json({err: "Internal Service Error"})
