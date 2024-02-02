@@ -41,11 +41,16 @@ router.get('/:id', (req, res) => {
     })
 })
 
+/* POST product to 'products' collection */
 router.post('/add', (req, res) => {
     req.app.locals.db.collection('products').insertOne(req.body)
     .then(result => {
         console.log(result)
         res.status(201).json({ message: "Product added successfully" });
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({ error: "Internal Server Error" });
     })
 })
 
