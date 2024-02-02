@@ -42,4 +42,26 @@ router.post('/add', (req, res) => {
 });
 
 
+router.post('/login', (req, res) => {
+  let checkEmail = req.body.email;
+  let checkPassword = req.body.password;
+
+  req.app.locals.db.collection("users").find().toArray()
+  .then(users => {
+    let user = users.find(user => user.email == checkEmail && user.password == checkPassword);
+    
+    if (user) {
+      res.json({userId: user._id.toString()})
+    }
+
+    else {
+      res.status(401).json({message: 'User not found'});
+    }
+  })
+  .catch(err => {
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  })
+})
+
 module.exports = router;
