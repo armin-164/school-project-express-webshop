@@ -69,7 +69,7 @@ router.post('/login', (req, res) => {
     }
 
     else {
-      res.status(401).json({message: 'User not found'});
+      res.status(401).json({message: 'Wrong email/password'});
     }
   })
   .catch(err => {
