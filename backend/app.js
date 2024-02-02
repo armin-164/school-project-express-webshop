@@ -6,6 +6,7 @@ let cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const productsRouter = require('./routes/products');
 
 var app = express();
 
@@ -28,5 +29,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017')
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
+app.use('api/products', productsRouter);
 
 module.exports = app;
