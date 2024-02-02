@@ -41,5 +41,12 @@ router.get('/:id', (req, res) => {
     })
 })
 
+router.post('/add', (req, res) => {
+    req.app.locals.db.collection('products').insertOne(req.body)
+    .then(result => {
+        console.log(result)
+        res.status(201).json({ message: "Product added successfully" });
+    })
+})
 
 module.exports = router;
