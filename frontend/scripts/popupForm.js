@@ -43,11 +43,11 @@ function createForm(str) {
     loginBtn.innerText = 'Login';
     loginBtn.addEventListener('click', validateLogin);
 
-    const createUserBtn = document.createElement('button');
-    createUserBtn.innerText = 'Create an account';
-    createUserBtn.addEventListener('click', () => popupDiv.appendChild(createForm('signup')));
+    const createAccountBtn = document.createElement('button');
+    createAccountBtn.innerText = 'Create an account';
+    createAccountBtn.addEventListener('click', () => popupDiv.appendChild(createForm('signup')));
 
-    buttonContainer.append(loginBtn, createUserBtn);
+    buttonContainer.append(loginBtn, createAccountBtn);
   } else if (str === 'signup') {
     title.innerText = 'Sign Up';
 
