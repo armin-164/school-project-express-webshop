@@ -1,10 +1,30 @@
 const overlayDiv = document.querySelector('.overlay');
 
+function validateLogin() {
+  const userEmail = document.querySelector('.user-email').value;
+  const userPassword = document.querySelector('.user-password').value;
+
+  const user = {
+    email: userEmail,
+    password: userPassword,
+  };
+
+  fetch('http://localhost:3000/api/users/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data.userId));
+}
+
 function loginUser() {
   const popupDiv = document.querySelector('.login-popup');
   popupDiv.innerHTML = '';
 
-  const formContainer = document.createElement('form');
+  const formContainer = document.createElement('div');
   formContainer.classList.add('form-container');
 
   const closeNavButton = document.createElement('span');
@@ -37,6 +57,7 @@ function loginUser() {
 
   const loginBtn = document.createElement('button');
   loginBtn.innerText = 'Login';
+  loginBtn.addEventListener('click', validateLogin);
 
   const createUserBtn = document.createElement('button');
   createUserBtn.innerText = 'Create an account';
