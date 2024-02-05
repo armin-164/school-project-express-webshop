@@ -80,7 +80,7 @@ function initializeLoginHandler() {
   document.body.appendChild(popupDiv);
 
   if (!user) {
-    popupDiv.appendChild(createForm('signup'));
+    popupDiv.appendChild(createForm('login'));
   }
 
   userProfile.addEventListener('click', () => {
