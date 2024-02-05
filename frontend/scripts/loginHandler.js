@@ -8,6 +8,7 @@ function loginUser() {
   const closeNavButton = document.createElement('span');
   closeNavButton.classList.add('material-symbols-outlined');
   closeNavButton.innerText = 'close';
+  closeNavButton.addEventListener('click', () => popupDiv.classList.toggle('visible'));
 
   const loginTitle = document.createElement('h2');
   loginTitle.innerText = 'Log in';
@@ -42,7 +43,7 @@ function initializeLoginHandler() {
   const user = localStorage.getItem('user');
 
   const popupDiv = document.createElement('div');
-  popupDiv.classList.add('login-popup', 'hidden');
+  popupDiv.classList.add('login-popup');
   document.body.appendChild(popupDiv);
 
   if (!user) {
@@ -50,7 +51,7 @@ function initializeLoginHandler() {
   }
 
   userProfile.addEventListener('click', () => {
-    popupDiv.classList.toggle('active');
+    popupDiv.classList.toggle('visible');
   });
 }
 
