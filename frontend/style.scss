@@ -143,6 +143,36 @@ main {
 
 
     }
+
+    > .button-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2em;
+      width: 100%;
+
+      > button {
+        width: 100%;
+        padding: 0.5em 0.5em;
+        font-weight: bold;
+        font-family: 'Lato';
+        font-size: 1.5em;
+        color: white;
+        border: none;
+        box-shadow: 0 0 4px black;
+        
+        &:active {
+          border: 1px solid black;
+        }
+      }
+
+      :nth-child(1) {
+        background-color: rgb(28, 228, 28);
+      }
+
+      :nth-child(2) {
+        background-color: rgb(19, 101, 255);
+      }
+    }
   }
 }
 
