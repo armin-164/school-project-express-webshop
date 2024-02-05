@@ -1,3 +1,5 @@
+const overlayDiv = document.querySelector('.overlay');
+
 function loginUser() {
   const popupDiv = document.querySelector('.login-popup');
   popupDiv.innerHTML = '';
@@ -8,7 +10,10 @@ function loginUser() {
   const closeNavButton = document.createElement('span');
   closeNavButton.classList.add('material-symbols-outlined');
   closeNavButton.innerText = 'close';
-  closeNavButton.addEventListener('click', () => popupDiv.classList.toggle('visible'));
+  closeNavButton.addEventListener('click', () => {
+    popupDiv.classList.toggle('visible');
+    overlayDiv.classList.toggle('block');
+  });
 
   const loginTitle = document.createElement('h2');
   loginTitle.innerText = 'Log in';
@@ -60,6 +65,7 @@ function initializeLoginHandler() {
 
   userProfile.addEventListener('click', () => {
     popupDiv.classList.toggle('visible');
+    overlayDiv.classList.toggle('block');
   });
 }
 
