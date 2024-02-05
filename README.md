@@ -1,4 +1,7 @@
+## OBS: Använd pnpm install för att installera alla paket
+
 # Du har fått i uppdrag att utveckla API’et till en webbshop.
+
 
 En lösningsarkitekt har redan dokumenterat vilka endpoints som skall finnas för API’et samt skrivit ett test flöde med REST-Client som ni kan börja utveckal med. Dvs vilka endpoints och vad de skall heta samt vad de förväntas returnera är redan förutbestämt. 
 
