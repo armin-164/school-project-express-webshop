@@ -9,7 +9,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
+
   > div {
     flex: 1;
   }
@@ -36,6 +36,48 @@ header {
 
     span {
       font-size: 2em;
+    }
+  }
+}
+
+main {
+  > .product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4em;
+
+    > .product-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 15em;
+      border: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+      padding: 2em 0;
+      
+      img {
+        width: 80%;
+        height: fit-content;
+      }
+
+      button {
+        padding: 4px 0;
+        width: 8em;
+        font-size: 1em;
+        font-weight: bold;
+        color: white;
+        border: 2px solid black;
+      }
+
+      .add-to-cart-button {
+        background-color: rgb(57, 175, 57);
+      }
+
+      .more-button {
+        margin-top: 1em;
+        background-color: grey;
+      }
     }
   }
 }
