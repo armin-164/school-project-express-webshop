@@ -22,10 +22,12 @@ function loginUser() {
   inputContainer.classList.add('input-container');
 
   const inputEmail = document.createElement('input');
+  inputEmail.classList.add('user-email');
   inputEmail.placeholder = 'Email';
   inputEmail.type = 'email';
 
   const inputPassword = document.createElement('input');
+  inputPassword.classList.add('user-password');
   inputPassword.placeholder = 'Password';
 
   inputContainer.append(inputEmail, inputPassword);
