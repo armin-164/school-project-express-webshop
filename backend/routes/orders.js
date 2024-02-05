@@ -14,8 +14,17 @@ router.post('/add', (req, res) => {
     })
 })
 
-/* GET all orders */
-router.get('/all', (req, res) => {
+
+/* GET all orders. USE THE TOKEN BELOW TO TEST*/
+let token = 1234;
+router.get('/all/:token', (req, res) => {
+    console.log(req.params.token)
+
+    if (req.params.token != token) {
+        res.status(401).json( {message: "Unauthorized"} )
+        return;
+    }
+
     req.app.locals.db.collection('orders').find().toArray()
     .then(data => {
 
