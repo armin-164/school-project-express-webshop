@@ -83,17 +83,82 @@ main {
 }
 
 .login-popup {
-  background-color: grey;
+  background-color: white;
+  z-index: 2;
   position: fixed;
   width: 100%;
   height: 100%;
   top: 0;
   transform: translateX(-100%);
-  transition: transform 0.5s ease; 
+  transition: transform 0.5s ease;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+
 
   @media (min-width: 720px) {
     width: 320px;
   }
+
+  > .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 70%;
+    height: 100%;
+
+    > span {
+      position: absolute;
+      top: 0.5em;
+      right: 0.5em;
+      font-size: 2em;
+    }
+
+    > h2 {
+      font-size: 2.5em;
+      font-weight: bold;
+    }
+
+    > .input-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3em;
+      width: 100%;
+
+      > input {
+        font-size: 1.5em;
+        height: 2em;
+        border-radius: 0.5em;
+        border: 1px solid black;
+
+        &:hover {
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+      }
+
+
+    }
+  }
+}
+
+
+.overlay {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7); 
+  display: none; 
+}
+
+.overlay.block {
+  display: block;
 }
 
 .login-popup.visible {
