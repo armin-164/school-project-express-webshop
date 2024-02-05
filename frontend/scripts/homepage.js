@@ -4,23 +4,25 @@ function createHomepageElements(array) {
   mainDiv.innerHTML = '';
 
   const productsContainer = document.createElement('div');
-  productsContainer.classList = 'product-container';
+  productsContainer.classList.add('product-container');
 
   array.forEach((product) => {
     const productCard = document.createElement('div');
-    productCard.classList = 'product-card';
+    productCard.classList.add('product-card');
 
     const placeholderImg = document.createElement('img');
-    placeholderImg.classList = 'product-img';
+    placeholderImg.classList.add('product-img');
     placeholderImg.src = '../assets/placeholder.jpg';
 
     const productNameElement = document.createElement('h4');
     productNameElement.innerText = product.name;
 
     const addToCartButton = document.createElement('button');
+    addToCartButton.classList.add('add-to-cart-button');
     addToCartButton.innerText = 'Add to cart';
 
     const moreButton = document.createElement('button');
+    moreButton.classList.add('more-button');
     moreButton.innerText = 'More';
 
     productCard.append(placeholderImg, productNameElement, addToCartButton, moreButton);
