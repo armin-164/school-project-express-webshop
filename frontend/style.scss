@@ -1,0 +1,41 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: rgb(245, 245, 229);
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  > div {
+    flex: 1;
+  }
+
+  > .h-left {
+    padding-left: 2em;
+
+    span {
+      font-size: 2em;
+    }
+  }
+
+  > .h-center {
+    text-align: center;
+    h1 {
+      flex: 1;
+      white-space: nowrap;
+    }
+  }
+
+  > .h-right {
+    padding-right: 2em;
+    text-align: end;
+
+    span {
+      font-size: 2em;
+    }
+  }
+}
