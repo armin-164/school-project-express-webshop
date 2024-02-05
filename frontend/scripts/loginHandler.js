@@ -13,6 +13,9 @@ function loginUser() {
   const loginTitle = document.createElement('h2');
   loginTitle.innerText = 'Log in';
 
+  const inputContainer = document.createElement('div');
+  inputContainer.classList.add('input-container');
+
   const inputEmail = document.createElement('input');
   inputEmail.placeholder = 'Email';
   inputEmail.type = 'email';
@@ -20,19 +23,24 @@ function loginUser() {
   const inputPassword = document.createElement('input');
   inputPassword.placeholder = 'Password';
 
+  inputContainer.append(inputEmail, inputPassword);
+
+  const buttonContainer = document.createElement('div');
+  buttonContainer.classList.add('button-container');
+
   const loginBtn = document.createElement('button');
   loginBtn.innerText = 'Login';
 
   const createUserBtn = document.createElement('button');
   createUserBtn.innerText = 'Create an account';
 
+  buttonContainer.append(loginBtn, createUserBtn);
+
   formContainer.append(
     closeNavButton,
     loginTitle,
-    inputEmail,
-    inputPassword,
-    loginBtn,
-    createUserBtn,
+    inputContainer,
+    buttonContainer,
   );
 
   return formContainer;
