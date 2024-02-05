@@ -1,5 +1,3 @@
-const overlayDiv = document.querySelector('.overlay');
-
 function validateLogin() {
   const userEmail = document.querySelector('.user-email').value;
   const userPassword = document.querySelector('.user-password').value;
@@ -20,7 +18,9 @@ function validateLogin() {
     .then((data) => console.log(data.userId));
 }
 
-function loginUser() {
+function createForm(str) {
+  const overlayDiv = document.querySelector('.overlay');
+
   const popupDiv = document.querySelector('.login-popup');
   popupDiv.innerHTML = '';
 
@@ -35,8 +35,7 @@ function loginUser() {
     overlayDiv.classList.toggle('block');
   });
 
-  const loginTitle = document.createElement('h2');
-  loginTitle.innerText = 'Log in';
+  const title = document.createElement('h2');
 
   const inputContainer = document.createElement('div');
   inputContainer.classList.add('input-container');
@@ -55,26 +54,42 @@ function loginUser() {
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('button-container');
 
-  const loginBtn = document.createElement('button');
-  loginBtn.innerText = 'Login';
-  loginBtn.addEventListener('click', validateLogin);
+  if (str === 'login') {
+    title.innerText = 'Log In';
 
-  const createUserBtn = document.createElement('button');
-  createUserBtn.innerText = 'Create an account';
+    const loginBtn = document.createElement('button');
+    loginBtn.innerText = 'Login';
+    loginBtn.addEventListener('click', validateLogin);
 
-  buttonContainer.append(loginBtn, createUserBtn);
+    const createUserBtn = document.createElement('button');
+    createUserBtn.innerText = 'Create an account';
+    createUserBtn.addEventListener('click', () => popupDiv.appendChild(createForm('signup')));
 
-  formContainer.append(
-    closeNavButton,
-    loginTitle,
-    inputContainer,
-    buttonContainer,
-  );
+    buttonContainer.append(loginBtn, createUserBtn);
+  } else if (str === 'signup') {
+    title.innerText = 'Sign Up';
+
+    const inputName = document.createElement('input');
+    inputName.placeholder = 'Name';
+    inputName.classList.add('user-name');
+
+    const signupBtn = document.createElement('button');
+    signupBtn.innerText = 'Sign Up';
+    signupBtn.addEventListener('click', () => {
+      popupDiv.appendChild(createForm('login'));
+    });
+
+    inputContainer.insertBefore(inputName, inputContainer.firstChild);
+    buttonContainer.appendChild(signupBtn);
+  }
+
+  formContainer.append(closeNavButton, title, inputContainer, buttonContainer);
 
   return formContainer;
 }
 
 function initializeLoginHandler() {
+  const overlayDiv = document.querySelector('.overlay');
   const userProfile = document.getElementById('user-profile');
   const user = localStorage.getItem('user');
 
@@ -83,7 +98,7 @@ function initializeLoginHandler() {
   document.body.appendChild(popupDiv);
 
   if (!user) {
-    popupDiv.appendChild(loginUser());
+    popupDiv.appendChild(createForm('signup'));
   }
 
   userProfile.addEventListener('click', () => {
