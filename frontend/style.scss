@@ -81,3 +81,22 @@ main {
     }
   }
 }
+
+.login-popup {
+  background-color: grey;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  transform: translateX(-100%);
+  transition: transform 0.5s ease; 
+
+  @media (min-width: 720px) {
+    width: 320px;
+  }
+}
+
+.login-popup.active {
+  transform: translateX(0%); 
+}
+
