@@ -1,4 +1,4 @@
-import { validateLogin } from './loginHandler';
+import validateLogin from './loginHandler';
 
 function createForm(str) {
   const overlayDiv = document.querySelector('.overlay');
