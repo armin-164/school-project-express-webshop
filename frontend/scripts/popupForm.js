@@ -1,4 +1,5 @@
 import validateLogin from './loginHandler';
+import createUser from './userRegistration';
 
 function createForm(str) {
   const overlayDiv = document.querySelector('.overlay');
@@ -58,6 +59,7 @@ function createForm(str) {
     const signupBtn = document.createElement('button');
     signupBtn.innerText = 'Sign Up';
     signupBtn.addEventListener('click', () => {
+      createUser();
       popupDiv.appendChild(createForm('login'));
     });
 
