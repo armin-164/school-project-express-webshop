@@ -72,6 +72,40 @@ function createForm(str) {
   return formContainer;
 }
 
+function renderLoggedInOptions() {
+  const overlayDiv = document.querySelector('.overlay');
+  const popupDiv = document.querySelector('.login-popup');
+  popupDiv.innerHTML = '';
+
+  const closeNavButton = document.createElement('span');
+  closeNavButton.classList.add('material-symbols-outlined');
+  closeNavButton.innerText = 'close';
+  closeNavButton.addEventListener('click', () => {
+    popupDiv.classList.toggle('visible');
+    overlayDiv.classList.toggle('block');
+  });
+
+  const optionsContainer = document.createElement('div');
+  optionsContainer.classList.add('user-options-container');
+
+  const logoutButton = document.createElement('button');
+  logoutButton.innerText = 'Logout';
+  logoutButton.classList.add('logout-button');
+  logoutButton.addEventListener('click', createForm('login'));
+
+  const myOrdersBtn = document.createElement('button');
+  myOrdersBtn.innerText = 'My Orders';
+  myOrdersBtn.classList.add('my-orders-btn');
+
+  const goToCartBtn = document.createElement('button');
+  goToCartBtn.innerText = 'Go to Cart';
+  goToCartBtn.classList.add('go-to-cart-btn');
+
+  optionsContainer.append(closeNavButton, logoutButton, myOrdersBtn, goToCartBtn);
+
+  return optionsContainer;
+}
+
 function initializeLoginHandler() {
   const overlayDiv = document.querySelector('.overlay');
   const userProfile = document.getElementById('user-profile');
@@ -83,6 +117,8 @@ function initializeLoginHandler() {
 
   if (!user) {
     popupDiv.appendChild(createForm('login'));
+  } else {
+    popupDiv.appendChild(renderLoggedInOptions());
   }
 
   userProfile.addEventListener('click', () => {
