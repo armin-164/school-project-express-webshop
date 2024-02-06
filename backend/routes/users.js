@@ -44,15 +44,25 @@ router.post('/', (req, res) => {
 
 /* Add a user to database */
 router.post('/add', (req, res) => {
-  req.app.locals.db.collection("users").insertOne(req.body)
+  req.app.locals.db.collection("users").findOne({email: req.body.email})
+  .then(existingUser => {
+
+    if (existingUser) {
+      return res.status(409).json({message: 'User already exists'})
+    }
+
+    req.app.locals.db.collection("users").insertOne(req.body)
     .then(result => {
       console.log(result);
       res.status(201).json({ message: "User added successfully" });
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ error: "Internal Server Error" });
     });
+
+  })
+  .catch(err => {
+    console.error(err);
+    res.status(500).json({ error: "Internal Server Error" });
+  });
+
 });
 
 
