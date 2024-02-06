@@ -53,7 +53,7 @@ router.post('/add', (req, res) => {
 
     req.app.locals.db.collection("users").insertOne(req.body)
     .then(result => {
-      res.status(201).json({ message: "User added successfully", id: result.insertedId.toString() });
+      res.status(201).json({ message: "User added successfully"});
     });
 
   })
