@@ -1,5 +1,37 @@
-import validateLogin from './loginHandler';
 import createUser from './userRegistration';
+
+function validateLogin() {
+  const userEmail = document.querySelector('.user-email').value;
+  const userPassword = document.querySelector('.user-password').value;
+  const message = document.querySelector('.popup-message');
+
+  const user = {
+    email: userEmail,
+    password: userPassword,
+  };
+
+  fetch('http://localhost:3000/api/users/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.userId) {
+        localStorage.setItem('user', data.userId);
+        const popupDiv = document.querySelector('.login-popup');
+        popupDiv.appendChild(renderLoggedInOptions());
+      } else if (!message && !data.userId) {
+        const inputContainer = document.querySelector('.input-container');
+        const newMessage = document.createElement('span');
+        newMessage.classList.add('popup-message');
+        newMessage.innerText = data.message;
+        inputContainer.insertBefore(newMessage, inputContainer.firstChild);
+      }
+    });
+}
 
 function createForm(str) {
   const overlayDiv = document.querySelector('.overlay');
@@ -104,7 +136,12 @@ function renderLoggedInOptions() {
   goToCartBtn.innerText = 'Go to Cart';
   goToCartBtn.classList.add('go-to-cart-btn');
 
-  optionsContainer.append(closeNavButton, logoutButton, myOrdersBtn, goToCartBtn);
+  optionsContainer.append(
+    closeNavButton,
+    logoutButton,
+    myOrdersBtn,
+    goToCartBtn,
+  );
 
   return optionsContainer;
 }
