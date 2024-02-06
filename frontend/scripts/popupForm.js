@@ -91,7 +91,10 @@ function renderLoggedInOptions() {
   const logoutButton = document.createElement('button');
   logoutButton.innerText = 'Logout';
   logoutButton.classList.add('logout-button');
-  logoutButton.addEventListener('click', createForm('login'));
+  logoutButton.addEventListener('click', () => {
+    localStorage.removeItem('user');
+    popupDiv.appendChild(createForm('login'));
+  });
 
   const myOrdersBtn = document.createElement('button');
   myOrdersBtn.innerText = 'My Orders';
