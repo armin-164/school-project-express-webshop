@@ -176,6 +176,44 @@ main {
   }
 }
 
+.user-options-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  gap: 4em;
+  > span {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    font-size: 2em;  
+  }
+
+  > button {
+    width: 80%;
+    padding: 0.5em 2em;
+    font-weight: bold;
+    font-family: 'Lato';
+    font-size: 1.5em;
+    color: white;
+    border: none;
+    box-shadow: 0 0 4px black;
+    background-color: grey;
+    
+    &:active {
+     border: 1px solid black;
+    }
+  }
+
+  :nth-child(3) {
+    background-color: blue;
+  }
+
+  :nth-child(4) {
+    background-color: tomato;
+  }
+}
+
 
 .overlay {
   position: fixed;
