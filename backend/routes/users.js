@@ -6,7 +6,9 @@ router.get('/', (req, res) => {
   req.app.locals.db.collection("users").find().toArray()
   .then(users => {
 
-    if (users) {
+    // Check if users array has 1 or more users
+    // else, send a 404.
+    if (users.length >= 1) {
       let newUsers = users.map(user => {
         delete user.password;
         return user;
