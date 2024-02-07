@@ -27,7 +27,7 @@ router.get('/', (req, res) => {
   })
 });
 
-/* Find and return user */
+/* Find and return user if they exist*/
 router.post('/', (req, res) => {
   req.app.locals.db.collection("users").find().toArray()
     .then(users => {
