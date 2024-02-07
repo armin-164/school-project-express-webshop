@@ -44,7 +44,7 @@ router.post('/', (req, res) => {
     });
 });
 
-/* Add a user to database */
+/* Add a user to database if they don't exist already */
 router.post('/add', (req, res) => {
   req.app.locals.db.collection("users").findOne({email: req.body.email})
   .then(existingUser => {
@@ -66,7 +66,7 @@ router.post('/add', (req, res) => {
 
 });
 
-
+/* Send back userId if user exists and login details are correct */
 router.post('/login', (req, res) => {
   let checkEmail = req.body.email;
   let checkPassword = req.body.password;
