@@ -47,7 +47,10 @@ router.post('/', (req, res) => {
 
 /* Add a user to database if they don't exist already */
 router.post('/add', (req, res) => {
-  req.app.locals.db.collection("users").findOne({email: req.body.email})
+
+  let userEmail = req.body.email.toLowerCase();
+
+  req.app.locals.db.collection("users").findOne({email: userEmail})
   .then(existingUser => {
 
     if (existingUser) {
@@ -76,7 +79,7 @@ router.post('/add', (req, res) => {
     
     const user = {
       name: req.body.name,
-      email: req.body.email,
+      email: userEmail,
       password: iv.toString('hex') + encryptedPassword,
     };
 
