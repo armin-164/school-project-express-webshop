@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const crypto = require('crypto');
 
 /* GET users listing. */
 router.get('/', (req, res) => {
@@ -53,7 +54,33 @@ router.post('/add', (req, res) => {
       return res.status(409).json({message: 'User already exists'})
     }
 
-    req.app.locals.db.collection("users").insertOne(req.body)
+    // Create a Buffer from a 32-byte env variable since Buffer is one of the few
+    // acceptable data types for the key argument in createCipheriv
+    const secretKey = Buffer.from(process.env.ENCRYPTION_KEY, 'hex');
+
+    // Create an initialization vector fit for the AES to provide more "security"
+    const iv = crypto.randomBytes(16);
+
+    // Create a cipher object which will use the AES-256-CBC encryption, the
+    // secret key to control the encryption algorithm which makes decryption possible.
+    // Also add the iv 
+    const cipher = crypto.createCipheriv("aes-256-cbc", secretKey, iv);
+
+    // Use the cipher object to encrypt the password sent in. The 2nd parameter
+    // is the encoding of the password sent in and the 3rd is the encoding of the return value.
+    let encryptedPassword = cipher.update(req.body.password, "utf-8", "hex");
+
+    // Add output to variable to ensure all encrypted data is in it.
+    encryptedPassword += cipher.final('hex');
+
+    
+    const user = {
+      name: req.body.name,
+      email: req.body.email,
+      password: iv.toString('hex') + encryptedPassword,
+    };
+
+    req.app.locals.db.collection("users").insertOne(user)
     .then(result => {
       res.status(201).json({ message: "User added successfully"});
     });
@@ -73,14 +100,33 @@ router.post('/login', (req, res) => {
 
   req.app.locals.db.collection("users").find().toArray()
   .then(users => {
-    let user = users.find(user => user.email == checkEmail && user.password == checkPassword);
+    let user = users.find(user => user.email == checkEmail);
     
-    if (user) {
+    if (!user) {
+      return res.status(401).json({message: 'User not found'});
+    }
+
+    // Retrieve secretKey again
+    const secretKey = Buffer.from(process.env.ENCRYPTION_KEY, 'hex');
+    
+    // Splice the iv to use for the decryption process
+    const iv = Buffer.from(user.password.slice(0, 32), 'hex');
+
+    // The rest is the encryptedPassword which we want to slice
+    const encryptedPassword = user.password.slice(32);
+
+    // The decryption process
+    const decipher = crypto.createDecipheriv('aes-256-cbc', secretKey, iv);
+    let decryptedPassword = decipher.update(encryptedPassword, 'hex', 'utf8');
+    decryptedPassword += decipher.final('utf8');
+
+    
+    if (checkPassword == decryptedPassword) {
       res.json({userId: user._id.toString()})
     }
 
     else {
-      res.status(401).json({message: 'Wrong email/password'});
+      res.status(401).json({message: 'Wrong password'});
     }
   })
   .catch(err => {
