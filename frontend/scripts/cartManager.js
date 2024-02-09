@@ -43,8 +43,10 @@ function addToCart(event) {
           existingProduct.quantity += 1;
         } else {
           orderData.products.push({
+            name: product.name,
             productId: product._id,
             quantity: 1,
+            price: product.price,
           });
         }
 
