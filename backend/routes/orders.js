@@ -38,8 +38,31 @@ router.post('/add', (req, res) => {
     })
 })
 
+/* Return all orders for a specific user */
+router.post('/user', (req, res) => {
 
+    // Check if token does not exist OR equal to the API token 
+    if (!req.body.hasOwnProperty('token') || req.body.token != process.env.API_TOKEN) {
+        return res.status(401).json( {message: "Unauthorized"} );
+    }
 
+    req.app.locals.db.collection('orders').find().toArray()
+    .then(result => {
+        let foundOrders = result.filter(obj => req.body.user == obj.user);
+        
+        if (foundOrders) {
+            return res.json(foundOrders);
+        }
+
+        else {
+            res.status(404).json({message: 'Orders not found'});
+        }
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({ error: "Internal Server Error" });
+    })
+})
 
 
 
