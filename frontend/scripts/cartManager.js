@@ -72,8 +72,8 @@ function displayOrderForm() {
       <label for="phone">Phone:</label>
       <input type="tel" id="phone" name="phone" required>
       <div class="buttons">
-        <button type="submit">Submit</button>
-        <button type="reset">Reset</button>
+        <button class="submit-order" type="submit">Submit</button>
+        <button class="reset-order" type="reset">Reset</button>
       </div>
     </form>
   `;
