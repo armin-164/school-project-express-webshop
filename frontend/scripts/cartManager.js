@@ -61,22 +61,22 @@ function displayOrderForm() {
   orderForm.classList.add('order-form');
 
   orderForm.innerHTML = `
-    <h2>Order Form</h2>
-    <form id="orderForm">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-      <label for="address">Address:</label>
-      <input type="text" id="address" name="address" required>
-      <label for="phone">Phone:</label>
-      <input type="tel" id="phone" name="phone" required>
-      <div class="buttons">
-        <button class="submit-order" type="submit">Submit</button>
-        <button class="reset-order" type="reset">Reset</button>
-      </div>
-    </form>
-  `;
+  <h2>Order Form</h2>
+  <form id="orderForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" class="order-name" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" class="order-email" required>
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" class="order-address" required>
+    <label for="phone">Phone:</label>
+    <input type="tel" id="phone" name="phone" class="order-phone" required>
+    <div class="buttons">
+      <button class="submit-order" type="submit">Submit</button>
+      <button class="reset-order" type="reset">Reset</button>
+    </div>
+  </form>
+`;
 
   return orderForm;
 }
