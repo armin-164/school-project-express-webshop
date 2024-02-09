@@ -1,4 +1,5 @@
 import createUser from './userRegistration';
+import getOrders from './ordersManager';
 
 function validateLogin() {
   const userEmail = document.querySelector('.user-email').value;
@@ -131,6 +132,7 @@ function renderLoggedInOptions() {
   const myOrdersBtn = document.createElement('button');
   myOrdersBtn.innerText = 'My Orders';
   myOrdersBtn.classList.add('my-orders-btn');
+  myOrdersBtn.addEventListener('click', getOrders);
 
   const goToCartBtn = document.createElement('button');
   goToCartBtn.innerText = 'Go to Cart';
