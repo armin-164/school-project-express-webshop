@@ -61,10 +61,11 @@ router.get('/category/:id', (req, res) => {
 
 /* POST product to 'products' collection */
 router.post('/add', (req, res) => {
-    if (!req.body.hasOwnProperty('token')) {
-        res.status(401).json({ message: "Token is missing"} );
+    if (req.body.token != process.env.API_TOKEN) {
+        res.status(401).json({ message: "Unauthorized"} );
     }
     else {
+        delete req.body.token;
         req.app.locals.db.collection('products').insertOne(req.body)
          .then(result => {
             console.log(result)
