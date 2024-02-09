@@ -55,7 +55,7 @@ main {
       border: none;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
       padding: 2em 0;
-      
+
       img {
         width: 80%;
         height: fit-content;
@@ -92,10 +92,9 @@ main {
   transform: translateX(-100%);
   transition: transform 0.5s ease;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
-
 
   @media (min-width: 720px) {
     width: 320px;
@@ -140,8 +139,6 @@ main {
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
         }
       }
-
-
     }
 
     > .button-container {
@@ -159,7 +156,7 @@ main {
         color: white;
         border: none;
         box-shadow: 0 0 4px black;
-        
+
         &:active {
           border: 1px solid black;
         }
@@ -186,7 +183,7 @@ main {
     position: absolute;
     top: 0.5em;
     right: 0.5em;
-    font-size: 2em;  
+    font-size: 2em;
   }
 
   > button {
@@ -199,9 +196,9 @@ main {
     border: none;
     box-shadow: 0 0 4px black;
     background-color: grey;
-    
+
     &:active {
-     border: 1px solid black;
+      border: 1px solid black;
     }
   }
 
@@ -214,7 +211,6 @@ main {
   }
 }
 
-
 .overlay {
   position: fixed;
   z-index: 1;
@@ -222,8 +218,8 @@ main {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7); 
-  display: none; 
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
 }
 
 .overlay.block {
@@ -231,6 +227,5 @@ main {
 }
 
 .login-popup.visible {
-  transform: translateX(0%); 
+  transform: translateX(0%);
 }
-
