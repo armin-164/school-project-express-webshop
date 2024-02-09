@@ -23,5 +23,8 @@ module.exports = {
   },
   rules: {
     'linebreak-style': 'off',
+    'no-underscore-dangle': 'off',
+    'no-alert': 'off',
+    eqeqeq: 'off',
   },
 };
