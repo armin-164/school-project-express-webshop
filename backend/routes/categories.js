@@ -5,8 +5,8 @@ var router = express.Router();
 router.post('/add', (req, res) => {
     let category = req.body;
     
-    if (!category.hasOwnProperty('token')) {
-        res.status(401).json( {message: "Key/token is missing"} );
+    if (category.token != process.env.API_TOKEN) {
+        res.status(401).json( {message: "Unauthorized"} );
     }
 
     else {
