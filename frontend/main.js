@@ -11,7 +11,7 @@ headerTitle.addEventListener('click', displayHomepage);
 cartIcon.addEventListener('click', () => {
   // I have added a promise to ensure that submitBtn exists
   // after completing displayCart before retrieving it
-  new Promise((res, rej) => {
+  new Promise((res) => {
     displayCart();
     res();
   }).then(() => {
