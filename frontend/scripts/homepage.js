@@ -1,4 +1,4 @@
-import addToCart from './cartManager';
+import { addToCart } from './cartManager';
 
 const mainDiv = document.querySelector('.main-content');
 
