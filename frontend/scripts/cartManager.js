@@ -56,6 +56,31 @@ function addToCart(event) {
     });
 }
 
+function displayOrderForm() {
+  const orderForm = document.createElement('div');
+  orderForm.classList.add('order-form');
+
+  orderForm.innerHTML = `
+    <h2>Order Form</h2>
+    <form id="orderForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <label for="address">Address:</label>
+      <input type="text" id="address" name="address" required>
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone" name="phone" required>
+      <div class="buttons">
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+      </div>
+    </form>
+  `;
+
+  return orderForm;
+}
+
 function displayCart() {
   const mainDiv = document.querySelector('.main-content');
   mainDiv.innerHTML = '';
@@ -76,7 +101,7 @@ function displayCart() {
         <div class="quantity">${product.quantity}</div>
       `;
       cartContainer.appendChild(row);
-      
+
       // Add the price to the totalSum
       totalSum += product.price * product.quantity;
     });
@@ -91,7 +116,7 @@ function displayCart() {
     cartContainer.appendChild(emptyCartMessage);
   }
 
-  mainDiv.appendChild(cartContainer);
+  mainDiv.append(cartContainer, displayOrderForm());
 }
 
 export { addToCart, displayCart };
