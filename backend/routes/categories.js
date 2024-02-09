@@ -10,6 +10,7 @@ router.post('/add', (req, res) => {
     }
 
     else {
+        delete category.token;
         req.app.locals.db.collection('categories').insertOne(category)
         .then(result => {
             console.log(result);

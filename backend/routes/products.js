@@ -65,6 +65,7 @@ router.post('/add', (req, res) => {
         res.status(401).json({ message: "Unauthorized"} );
     }
     else {
+        delete req.body.token;
         req.app.locals.db.collection('products').insertOne(req.body)
          .then(result => {
             console.log(result)
