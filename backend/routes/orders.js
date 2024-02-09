@@ -47,8 +47,8 @@ router.post('/user', (req, res) => {
     }
 
     req.app.locals.db.collection('orders').find().toArray()
-    .then(result => {
-        let foundOrders = result.filter(obj => req.body.user == obj.user);
+    .then(orderArray => {
+        let foundOrders = orderArray.filter(order => req.body.user == order.user);
         
         if (foundOrders) {
             return res.json(foundOrders);
