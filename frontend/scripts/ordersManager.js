@@ -2,6 +2,10 @@ function sendOrder() {
   const orderData = JSON.parse(localStorage.getItem('orderData'));
   const allProducts = [];
 
+  if (!orderData) {
+    return alert('Your cart is empty');
+  }
+
   orderData.products.forEach((obj) => {
     allProducts.push({
       productId: obj.productId,
