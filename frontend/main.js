@@ -27,6 +27,12 @@ cartIcon.addEventListener('click', () => {
       }
       sendOrder();
     });
+
+    const resetBtn = document.querySelector('.reset-order');
+    resetBtn.addEventListener('click', () => {
+      localStorage.removeItem('orderData');
+      displayHomepage();
+    });
   });
 });
 
