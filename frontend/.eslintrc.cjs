@@ -26,5 +26,6 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'no-alert': 'off',
     eqeqeq: 'off',
+    'consistent-return': 'off',
   },
 };
