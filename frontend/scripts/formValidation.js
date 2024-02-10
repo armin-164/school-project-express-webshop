@@ -25,13 +25,13 @@ function formIsValid(str) {
     const emailValid = validateInputField(
       emailRegex,
       userEmail,
-      'Write a correct email'
+      'Write a correct email',
     );
 
     const passwordValid = validateInputField(
       passwordRegex,
       userPassword,
-      'Avoid use of symbols beside "!"...I need to update the regex'
+      'Avoid use of symbols beside "!"...I need to update the regex',
     );
     return emailValid && passwordValid;
   }
@@ -44,19 +44,19 @@ function formIsValid(str) {
     const nameValid = validateInputField(
       nameRegex,
       userName,
-      'Please avoid using any numbers/symbols'
+      'Please avoid using any numbers/symbols',
     );
 
     const emailValid = validateInputField(
       emailRegex,
       userEmail,
-      'Write a correct email'
+      'Write a correct email',
     );
 
     const passwordValid = validateInputField(
       passwordRegex,
       userPassword,
-      'Avoid use of symbols beside "!"...I need to update the regex'
+      'Avoid use of symbols beside "!"...I need to update the regex',
     );
 
     return nameValid && emailValid && passwordValid;
@@ -71,25 +71,25 @@ function formIsValid(str) {
     const orderNameValid = validateInputField(
       nameRegex,
       orderName,
-      'Please avoid using any numbers/symbols'
+      'Please avoid using any numbers/symbols',
     );
 
     const orderEmailValid = validateInputField(
       emailRegex,
       orderEmail,
-      'Write a correct email'
+      'Write a correct email',
     );
 
     const orderAddressValid = validateInputField(
       swedishAddressRegex,
       orderAddress,
-      'Write a correctly formatted address, avoid symbols'
+      'Write a correctly formatted address, avoid symbols',
     );
 
     const orderPhoneValid = validateInputField(
       phoneNumberRegex,
       orderPhone,
-      'Write 10-digit phone number'
+      'Write 10-digit phone number',
     );
 
     return (
