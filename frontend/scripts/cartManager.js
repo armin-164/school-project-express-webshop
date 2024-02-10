@@ -99,6 +99,7 @@ function displayCart() {
       row.innerHTML = `
         <div class="product-name">${product.name}</div>
         <div class="quantity">${product.quantity}</div>
+        <div class="price">$${product.price * product.quantity}</div>
       `;
       cartContainer.appendChild(row);
 
