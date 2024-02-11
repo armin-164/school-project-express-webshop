@@ -23,14 +23,14 @@ function sendOrder() {
     .then((availableProducts) => {
       order.products.forEach((orderedProduct) => {
         const foundProduct = availableProducts.find(
-          (p) => p._id.toString() === orderedProduct.productId
+          (p) => p._id.toString() === orderedProduct.productId,
         );
 
         const availableStock = foundProduct.lager - orderedProduct.quantity;
 
         if (availableStock < 0) {
           throw new Error(
-            `We only have ${foundProduct.lager} ${foundProduct.name}(s) left, please reset your cart and order again`
+            `We only have ${foundProduct.lager} ${foundProduct.name}(s) left, please reset your cart and order again`,
           );
         }
 
