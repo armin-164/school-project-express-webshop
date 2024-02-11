@@ -1,3 +1,5 @@
+import { addToCart } from './cartManager';
+
 const mainDiv = document.querySelector('.main-content');
 
 function createHomepageElements(array) {
@@ -20,6 +22,7 @@ function createHomepageElements(array) {
     const addToCartButton = document.createElement('button');
     addToCartButton.classList.add('add-to-cart-button');
     addToCartButton.innerText = 'Add to cart';
+    addToCartButton.addEventListener('click', addToCart);
 
     const moreButton = document.createElement('button');
     moreButton.classList.add('more-button');

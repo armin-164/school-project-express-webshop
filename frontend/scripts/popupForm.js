@@ -1,4 +1,5 @@
 import createUser from './userRegistration';
+import formIsValid from './formValidation';
 
 function validateLogin() {
   const userEmail = document.querySelector('.user-email').value;
@@ -74,7 +75,10 @@ function createForm(str) {
 
     const loginBtn = document.createElement('button');
     loginBtn.innerText = 'Login';
-    loginBtn.addEventListener('click', validateLogin);
+    loginBtn.addEventListener('click', () => {
+      formIsValid(str);
+      validateLogin();
+    });
 
     const createAccountBtn = document.createElement('button');
     createAccountBtn.innerText = 'Create an account';
@@ -91,6 +95,10 @@ function createForm(str) {
     const signupBtn = document.createElement('button');
     signupBtn.innerText = 'Sign Up';
     signupBtn.addEventListener('click', () => {
+      // If formIsValid returns false, stop the function from creating user.
+      if (!formIsValid(str)) {
+        return;
+      }
       createUser();
       popupDiv.appendChild(createForm('login'));
     });
