@@ -18,13 +18,32 @@ function sendOrder() {
     products: allProducts,
   };
 
-  fetch('http://localhost:3000/api/orders/add', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(order),
-  });
+  fetch('http://localhost:3000/api/products')
+    .then((res) => res.json())
+    .then((availableProducts) => {
+      order.products.forEach((orderedProduct) => {
+        const foundProduct = availableProducts.find(
+          (p) => p._id.toString() === orderedProduct.productId
+        );
+
+        const availableStock = foundProduct.lager - orderedProduct.quantity;
+
+        if (availableStock < 0) {
+          throw new Error(
+            `We only have ${foundProduct.lager} ${foundProduct.name}(s) left, please reset your cart and order again`
+          );
+        }
+
+        fetch('http://localhost:3000/api/orders/add', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(order),
+        });
+      });
+    })
+    .catch((err) => alert(err));
 }
 
 export default sendOrder;
