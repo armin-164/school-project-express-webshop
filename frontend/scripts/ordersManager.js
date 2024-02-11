@@ -60,6 +60,7 @@ function displayPreviousOrders() {
 
       myOrdersDiv.innerHTML = '<h2>My Previous Orders</h2>';
 
+      // Fetch products to get a hold of product name and price (to show total price)
       fetch('http://localhost:3000/api/products')
         .then((res) => res.json())
         .then((availableProducts) => {
