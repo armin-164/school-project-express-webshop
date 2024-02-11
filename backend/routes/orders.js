@@ -27,28 +27,35 @@ router.get('/all/:token', (req, res) => {
 
 /* POST method to add an order to 'orders' collection */
 router.post('/add', (req, res) => {
+    
+    // Insert order in collection
+    req.app.locals.db.collection('orders').insertOne(req.body)
+    .then(result => {
+        console.log(result);
+        res.json({message: 'Product added successfully'});
 
-    req.app.locals.db.collection('products').find().toArray()
-    .then(availableProducts => {
-        req.body.products.forEach(orderedProduct => {
-            const product = availableProducts.find(p => p._id.toString() == orderedProduct.productId);
-            
-            if (product) {
-                const updatedLager = product.lager - orderedProduct.quantity;
+        // Update product stock after order insertion
+        req.app.locals.db.collection('products').find().toArray()
+        .then(availableProducts => {
+            req.body.products.forEach(orderedProduct => {
+                const product = availableProducts.find(p => p._id.toString() == orderedProduct.productId);
+                
+                if (product) {
+                    const updatedLager = product.lager - orderedProduct.quantity;
 
-                // Update the lager property of the product in the database
-                req.app.locals.db.collection('products').updateOne(
-                    { _id: product._id },
-                    { $set: { lager: updatedLager } }
-                )
+                    // Update the lager property of the product in the database
+                    req.app.locals.db.collection('products').updateOne(
+                        { _id: product._id },
+                        { $set: { lager: updatedLager } }
+                    )
 
-                req.app.locals.db.collection('orders').insertOne(req.body)
-            }
+                }
+            })
         })
     })
     .catch(err => {
-        console.log(err)
-        res.status(500).json({ error: 'Internal Server Error' });
+        console.log(err);
+        res.status(500).json({ error: "Internal Server Error" });
     });
 });
 
