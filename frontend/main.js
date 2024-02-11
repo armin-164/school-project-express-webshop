@@ -2,7 +2,7 @@ import './style.scss';
 import displayHomepage from './scripts/homepage';
 import initializeLoginHandler from './scripts/popupForm';
 import { displayCart } from './scripts/cartManager';
-import sendOrder from './scripts/ordersManager';
+import { sendOrder } from './scripts/ordersManager';
 import formIsValid from './scripts/formValidation';
 
 const headerTitle = document.querySelector('h1');
