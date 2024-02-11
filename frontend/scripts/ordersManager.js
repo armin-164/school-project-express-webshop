@@ -1,3 +1,5 @@
+import displayHomepage from './homepage';
+
 function sendOrder() {
   const orderData = JSON.parse(localStorage.getItem('orderData'));
   const allProducts = [];
@@ -41,7 +43,25 @@ function sendOrder() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(order),
-      });
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          const mainDiv = document.querySelector('.main-content');
+          mainDiv.innerHTML = '';
+
+          const message = document.createElement('p');
+          message.classList.add('order-confirmation-text');
+          message.innerText = data.message;
+
+          const backToHomeBtn = document.createElement('button');
+          backToHomeBtn.innerText = 'Back to Homepage';
+          backToHomeBtn.classList.add('back-to-home-btn');
+          backToHomeBtn.addEventListener('click', displayHomepage);
+
+          localStorage.removeItem('orderData');
+
+          mainDiv.append(message, backToHomeBtn);
+        });
     })
     .catch((err) => alert(err));
 }
@@ -81,7 +101,7 @@ function displayPreviousOrders() {
                   totalPrice += productTotalPrice;
 
                   const productInfo = document.createElement('p');
-                  productInfo.textContent = `Product: ${product.name}, Quantity: ${orderedProduct.quantity}, Total Price: ${productTotalPrice}`;
+                  productInfo.textContent = `Product: ${product.name}, Quantity: ${orderedProduct.quantity},  Price: ${productTotalPrice}`;
                   orderRow.appendChild(productInfo);
                 }
               });
