@@ -1,5 +1,6 @@
 import createUser from './userRegistration';
 import formIsValid from './formValidation';
+import { displayPreviousOrders } from './ordersManager';
 
 function validateLogin() {
   const userEmail = document.querySelector('.user-email').value;
@@ -139,6 +140,7 @@ function renderLoggedInOptions() {
   const myOrdersBtn = document.createElement('button');
   myOrdersBtn.innerText = 'My Orders';
   myOrdersBtn.classList.add('my-orders-btn');
+  myOrdersBtn.addEventListener('click', displayPreviousOrders);
 
   const goToCartBtn = document.createElement('button');
   goToCartBtn.innerText = 'Go to Cart';
