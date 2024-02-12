@@ -3,13 +3,20 @@ import moreProductInfo from './productInfo';
 
 const mainDiv = document.querySelector('.main-content');
 
-function createHomepageElements(array) {
-  mainDiv.innerHTML = '';
+function updateProductDisplay(products) {
+  let productsContainer = document.querySelector('.product-container');
 
-  const productsContainer = document.createElement('div');
-  productsContainer.classList.add('product-container');
+  // If products container doesn't exist, create it
+  if (!productsContainer) {
+    productsContainer = document.createElement('div');
+    productsContainer.classList.add('product-container');
+    mainDiv.appendChild(productsContainer);
+  } else {
+    // Clear the product container before adding new products
+    productsContainer.innerHTML = '';
+  }
 
-  array.forEach((product) => {
+  products.forEach((product) => {
     const productCard = document.createElement('div');
     productCard.classList.add('product-card');
 
@@ -38,8 +45,43 @@ function createHomepageElements(array) {
     );
     productsContainer.appendChild(productCard);
   });
+}
 
-  mainDiv.appendChild(productsContainer);
+function createHomepageElements(array) {
+  mainDiv.innerHTML = '';
+
+  const selectContainer = document.createElement('div');
+  selectContainer.classList.add('select-container');
+
+  const selectElement = document.createElement('select');
+  selectElement.addEventListener('change', () => {
+    const productContainer = document.querySelector('.product-container');
+    productContainer.innerHTML = ''; // Empty the product container
+    const selectedCategory = selectElement.value;
+    const filteredProducts = array.filter((product) => product.category === selectedCategory);
+    updateProductDisplay(filteredProducts);
+  });
+
+  const defaultOption = document.createElement('option');
+  defaultOption.value = '';
+  defaultOption.textContent = 'Category'; 
+  selectElement.appendChild(defaultOption);
+
+  fetch('http://localhost:3000/api/categories')
+    .then((res) => res.json())
+    .then((categories) => {
+      categories.forEach((category) => {
+        const option = document.createElement('option');
+        option.value = category.name;
+        option.textContent = category.name;
+        selectElement.appendChild(option);
+      });
+
+      selectContainer.appendChild(selectElement);
+      mainDiv.appendChild(selectContainer);
+
+      updateProductDisplay(array);
+    });
 }
 
 function displayHomepage() {
