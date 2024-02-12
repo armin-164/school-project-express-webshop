@@ -1,5 +1,5 @@
 ## OBS: Använd pnpm install för att installera alla paket 
-## För frontended krävs det även att köra pnpm run dev
+## För frontenden krävs det även att köra pnpm run dev
 
 # Du har fått i uppdrag att utveckla API’et till en webbshop.
 
