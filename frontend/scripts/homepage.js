@@ -1,4 +1,5 @@
 import { addToCart } from './cartManager';
+import moreProductInfo from './productInfo';
 
 const mainDiv = document.querySelector('.main-content');
 
@@ -27,8 +28,14 @@ function createHomepageElements(array) {
     const moreButton = document.createElement('button');
     moreButton.classList.add('more-button');
     moreButton.innerText = 'More';
+    moreButton.addEventListener('click', moreProductInfo);
 
-    productCard.append(placeholderImg, productNameElement, addToCartButton, moreButton);
+    productCard.append(
+      placeholderImg,
+      productNameElement,
+      addToCartButton,
+      moreButton,
+    );
     productsContainer.appendChild(productCard);
   });
 
