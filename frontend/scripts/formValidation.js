@@ -15,7 +15,6 @@ function formIsValid(str) {
   const nameRegex = /^[a-zA-Z]+(?: [a-zA-Z]+)*$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const passwordRegex = /^[a-zA-Z0-9!]+$/;
-  const swedishAddressRegex = /^[a-zA-Z0-9åäöÅÄÖ]+$/;
   const phoneNumberRegex = /^07\d{8}$/;
 
   if (str === 'login') {
@@ -81,7 +80,7 @@ function formIsValid(str) {
     );
 
     const orderAddressValid = validateInputField(
-      swedishAddressRegex,
+      nameRegex,
       orderAddress,
       'Write a correctly formatted address, avoid symbols',
     );
