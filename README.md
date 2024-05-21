@@ -1,7 +1,11 @@
-## OBS: Använd pnpm install för att installera alla paket 
-## För frontenden krävs det även att köra pnpm run dev
+## OBS: Använd pnpm install för att installera alla paket // Use pnpm install to install all necessary packages
+## För frontenden krävs det även att köra pnpm run dev // For the frontend, you need to run pnpm run dev.
+## För backenden kan du använda nodemon start ifall du har det installerat globalt // For the backend, you can use nodemon start if you have it installed globally.
 
-# Du har fått i uppdrag att utveckla API’et till en webbshop.
+
+## Assignment description by my teacher (only in Swedish)
+
+### Du har fått i uppdrag att utveckla API’et till en webbshop.
 
 
 En lösningsarkitekt har redan dokumenterat vilka endpoints som skall finnas för API’et samt skrivit ett test flöde med REST-Client som ni kan börja utveckal med. Dvs vilka endpoints och vad de skall heta samt vad de förväntas returnera är redan förutbestämt. 
